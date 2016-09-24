@@ -10,6 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var ZipCodeTextF: UITextField!
+    @IBOutlet weak var PriceTextF: UITextField!
+    @IBOutlet weak var CommentTextF: UITextField!
+    
+    @IBAction func ControlTypeSwitch(sender: AnyObject) {
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
