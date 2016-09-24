@@ -8,7 +8,39 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ZipCodeTextFieldDelegate: NSObject, UITextFieldDelegate {
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    
+    
+        
+        return true
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
+    }
+    
+}
+
+class PriceTextFieldDelegate: NSObject, UITextFieldDelegate {
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        return true
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
+    }
+}
+
+
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var ZipCodeTextF: UITextField!
     @IBOutlet weak var PriceTextF: UITextField!
@@ -16,9 +48,24 @@ class ViewController: UIViewController {
     
     @IBAction func ControlTypeSwitch(sender: AnyObject) {
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.ZipCodeTextF.delegate = ZipCodeTextFieldDelegate()
+        self.PriceTextF.delegate = PriceTextFieldDelegate()
+        self.CommentTextF.delegate = self
+        
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+            
+            return true
+    }
+        
+        func textFieldShouldReturn(textField: UITextField) -> Bool {
+            textField.resignFirstResponder()
+            
+            return true
+        }
+     
     }
 
     override func didReceiveMemoryWarning() {
