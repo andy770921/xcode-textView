@@ -14,21 +14,23 @@ class ZipCodeTextFieldDelegate: NSObject, UITextFieldDelegate {
     
         let oldText = textField.text! as NSString
         
-        let newText: String = oldText.stringByReplacingCharactersInRange(range, withString: string) //表示newText會顯示在textField上
+        let newText: String = oldText.stringByReplacingCharactersInRange(range, withString: string)
+        //表示newText會顯示在textField上
         
-        //if String(oldText).characters.count < 5 {textField.text = newText}
-        //else {
+        if String(newText).characters.count <= 5 {textField.text = newText}
+        // 如果寫if String(oldText)，最多可打到六位數，怪
+        else {
             textField.text = (newText as NSString).substringToIndex(5)
-    //}
+    }
        
         
-        return false
+        return false //表示原先oldText隱藏 如果開true會重複顯示
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
-        return true //表示原先oldText隱藏 如果開true會重複顯示
+        return true
     }
     
 }
@@ -39,7 +41,8 @@ class PriceTextFieldDelegate: NSObject, UITextFieldDelegate {
         
         let oldText = textField.text! as NSString
         
-        var newText: String = oldText.stringByReplacingCharactersInRange(range, withString: string) //表示newText會顯示在textField上
+        var newText: String = oldText.stringByReplacingCharactersInRange(range, withString: string)
+        //表示newText會顯示在textField上
         
         // 以下為擷取數字進numOfPennies的code
         // 如果直接把newText強迫轉型Int，會因為打第二個數字後開始有錢的符號，進而出現問題
