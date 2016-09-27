@@ -17,8 +17,12 @@ class ZipCodeTextFieldDelegate: NSObject, UITextFieldDelegate {
         let newText: String = oldText.stringByReplacingCharactersInRange(range, withString: string)
         //表示newText會顯示在textField上
         
-        if String(newText).characters.count <= 5 {textField.text = newText}
-        // 如果寫if String(oldText)，最多可打到六位數，怪
+        if (newText as NSString).length  <= 5 {textField.text = newText}
+        
+        // 第二種寫法如下
+        // if newText.characters.count <= 5 {textField.text = newText}
+        // 如果寫if oldText.characters.count <= 5 ，最多可打到六位數，怪
+            
         else {
             textField.text = (newText as NSString).substringToIndex(5)
     }
