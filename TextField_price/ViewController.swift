@@ -29,7 +29,10 @@ class ZipCodeTextFieldDelegate: NSObject, UITextFieldDelegate {
        
         
         return false //表示原先oldText隱藏 如果開true會重複顯示
+    // 更簡易寫法為，不用if/else函式，直接寫 return newText.length <= 5 直接判斷真假值，如果為假便不會顯示text
     }
+    
+    
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -82,9 +85,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var ZipCodeTextF: UITextField!
     @IBOutlet weak var PriceTextF: UITextField!
     @IBOutlet weak var CommentTextF: UITextField!
+    @IBOutlet weak var SwitchOnOff: UISwitch!
     
-    @IBAction func ControlTypeSwitch(sender: AnyObject) {
+
+    
+    @IBAction func SwitchAction(sender: AnyObject) {
+        if !SwitchOnOff.on {
+        // 或if !(sender as! UISwitch).on
+            self.CommentTextF.resignFirstResponder()
+        }
     }
+    //以上為按Switch時，檢查on/off並使螢幕鍵盤消失的函數。
+    //函式的if無法拉出來放在viewDidLoad下，一定要在函式內，如無果放在ViewDidLoad，if函式只會Load時當下檢查一次
+
     let ZipDelegate = ZipCodeTextFieldDelegate()
     let PriceDelegate = PriceTextFieldDelegate()
     
@@ -95,18 +108,27 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.PriceTextF.delegate = PriceDelegate
         self.CommentTextF.delegate = self
         
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-            
-            return true
-    }
+        self.SwitchOnOff.setOn(false, animated: true)
         
-        func textFieldShouldReturn(textField: UITextField) -> Bool {
+
+    }
+
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+         return self.SwitchOnOff.on
+         }
+    //以上為准許編輯的函數
+ 
+        
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
             textField.resignFirstResponder()
-            
             return true
         }
-     
-    }
+    //以上為按鍵盤Enter(Return)時，鍵盤會自動消失的函數
+    
+
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

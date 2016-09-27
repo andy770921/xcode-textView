@@ -35,7 +35,7 @@
                                 <rect key="frame" x="345" y="96" width="51" height="31"/>
                                 <animations/>
                                 <connections>
-                                    <action selector="ControlTypeSwitch:" destination="BYZ-38-t0r" eventType="valueChanged" id="UOI-9e-k1e"/>
+                                    <action selector="SwitchAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="zc1-Nl-btl"/>
                                 </connections>
                             </switch>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="vip-hJ-Gip">
@@ -65,6 +65,7 @@
                     <connections>
                         <outlet property="CommentTextF" destination="vip-hJ-Gip" id="yHX-aD-EAp"/>
                         <outlet property="PriceTextF" destination="fcm-mn-jgq" id="SYB-3c-f4r"/>
+                        <outlet property="SwitchOnOff" destination="7yR-Xk-wMU" id="w2l-03-XIx"/>
                         <outlet property="ZipCodeTextF" destination="h1J-kz-zRV" id="ttf-G4-19S"/>
                     </connections>
                 </viewController>
